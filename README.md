@@ -24,7 +24,15 @@ Os objetivos a atingir com o trabalho são:
 2.ordenar e representar a informação tendo como referência o conceito de hierarquia, taxonomia, ou organigrama; 
 3. sistematizar o processo por forma a generalizar para casos similares.
 
-### Criação da instância MYSQL
+### Exemplo:
+
+- Na pasta *plots* encontram-se imagens das árvores de dependências geradas. 
+
+![image](https://user-images.githubusercontent.com/9929973/57588637-eb594980-750e-11e9-88f5-d4e1f88e92eb.png)
+
+# Deploy do projecto
+
+###Criação da instância MYSQL
 
 Encontra-se um ficheiro docker-compose.yml disponivel na raíz do projecto. Abrir o terminal 
 
