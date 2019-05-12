@@ -2,3 +2,4 @@ sqlalchemy
 pandas
 networkx
 matplotlib
+names
