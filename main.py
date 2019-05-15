@@ -1,4 +1,6 @@
 import os
+import pandas as pd
+from network import build_network
 from sqlalchemy import create_engine
 from dataset import generate_data
 
@@ -10,6 +12,9 @@ password = ''
 hostname = '127.0.0.1'
 database = 'pdi_par'
 # =============================================
+
+# Salvar a informação sobre a rede (usado) para o relatório
+save_network = True
 
 
 def doc_table(data, table_title, path_file):
@@ -33,16 +38,7 @@ def doc_table(data, table_title, path_file):
     document.save(path_file)
 
 
-def save_structure(arr, name):
-
-    import pandas as pd
-    df = pd.DataFrame(arr)
-    df.to_csv()
-
-
 if __name__ == '__main__':
-
-    save_network = True
 
     dim_arr  = []
     rdim_arr = []
@@ -52,7 +48,7 @@ if __name__ == '__main__':
 
     # ========================================================================
     # this function generates a random dataset and re-populates the database
-    # generate_data(number_of_nodes=16, con=con)
+    # generate_data(number_of_nodes=18, con=con)
     # ========================================================================
 
     sql = 'select * from dim;'
@@ -68,10 +64,6 @@ if __name__ == '__main__':
 
     for row in result_set:
         rdim_arr.append(dict(row))
-
-    from network import build_network
-
-    import pandas as pd
 
     if save_network:
 

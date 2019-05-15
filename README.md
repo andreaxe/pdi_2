@@ -49,4 +49,21 @@ existente deverá actualizar a informação disponibilizada por defeito.
 gerar um novo dataset (*main.py*) se encontra comentado, caso contrário a BD que indicou será restaurada com informação gerada
 pelo algoritmo.
 
-    ![image](https://user-images.githubusercontent.com/9929973/57795944-20e47980-773f-11e9-9062-63f559cb91f0.png)  
+    ![image](https://user-images.githubusercontent.com/9929973/57795944-20e47980-773f-11e9-9062-63f559cb91f0.png)
+    
+### Dependências do projecto
+
+Para correr o software deverá ter instalado o **Python 3.6** e usar o instalador de pacotes **PIP** para instalação
+das dependências presentes no ficheiro *"requirements.txt"*.
+
+A instalação das dependências poderá ser efectuada a partir da pasta do projecto executando o seguinte comando:
+
+* $ pip install requirements.txt
+
+**NOTA** Poderá ocorrer algum erro na instalação da bilbioteca *"pygraphviz"* por falta de dependências da bilbiotecas C. O problema pode ser resolvido através da instalação das mesmas:
+
+* $ sudo apt-get install graphviz libgraphviz-dev pkg-config
+
+A alternativa poderá ser usar o miniconda para criação de um ambiente virtual e instalação das dependências e da biblioteca em falha.
+
+Em caso de dúvida contactar: andregarxia@gmail.com

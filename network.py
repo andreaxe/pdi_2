@@ -50,7 +50,7 @@ def build_network(dim, rdim):
     write_dot(G, 'network.dot')
     plt.title('draw_networkx')
     pos = graphviz_layout(G, prog='dot')
-    nx.draw(G, pos, edge_color='b',  node_size=1300, arrowsize=15, arrowstyle='fancy')
+    nx.draw(G, pos, edge_color='b',  node_size=1500, arrowsize=15, arrowstyle='fancy')
     # nx.draw_networkx_labels(G, pos, arrows=True)
     # nx.draw_networkx_nodes(G, pos, node_size=1000, font_size=8, arrows=True)
 
@@ -60,7 +60,7 @@ def build_network(dim, rdim):
 
     figure = plt.gcf()  # get current figure
 
-    figure.set_size_inches(16, 12)
+    figure.set_size_inches(32, 24)
     # when saving, specify the DPI
     plt.title(label="")
     plt.savefig(os.path.join('plots', time.strftime('%a %H:%M:%S') + '.png'), dpi=100)
