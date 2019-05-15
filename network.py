@@ -20,6 +20,12 @@ from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 
 
 def search_for_label(value, dim):
+    """
+    not used...
+    :param value:
+    :param dim:
+    :return:
+    """
 
     for dict_item in dim.items():  # for name, age in dictionary.iteritems():  (for Python 2.x)
         if dict_item['id_dim'] == value:
@@ -39,24 +45,24 @@ def build_network(dim, rdim):
     # add edges
     # @todo posso precisar de trocar as dependencias
     for dict_item in rdim:
-        G.add_edge(dict_item['iddimblg_rdim'], dict_item['iddim_rdim'])
+        G.add_edge(dict_item['iddim_rdim'], dict_item['iddimblg_rdim'],)
 
     write_dot(G, 'network.dot')
     plt.title('draw_networkx')
     pos = graphviz_layout(G, prog='dot')
-    nx.draw(G, pos, edge_color='b',  node_size=1700, arrowsize=15, arrowstyle='fancy')
+    nx.draw(G, pos, edge_color='b',  node_size=1300, arrowsize=15, arrowstyle='fancy')
     # nx.draw_networkx_labels(G, pos, arrows=True)
     # nx.draw_networkx_nodes(G, pos, node_size=1000, font_size=8, arrows=True)
 
     nx.draw_networkx_edges(G, pos)
-    nx.draw_networkx_labels(G, pos, labels, font_size=8)
+    nx.draw_networkx_labels(G, pos, labels, font_size=6)
     # plt.figure(6, figsize=(24, 24))
 
     figure = plt.gcf()  # get current figure
 
-    figure.set_size_inches(8, 6)
+    figure.set_size_inches(16, 12)
     # when saving, specify the DPI
-    plt.title(label="PDI - Trabalho 2")
+    plt.title(label="")
     plt.savefig(os.path.join('plots', time.strftime('%a %H:%M:%S') + '.png'), dpi=100)
     plt.show()
     plt.close()

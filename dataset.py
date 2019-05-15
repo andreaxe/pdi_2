@@ -15,8 +15,8 @@ def generate_dataset(number_of_nodes):
     for i in range(number_of_nodes):
         name = names.get_first_name()
         node = {'id_dim': i+1, 'itempt_dim': name, 'itemen_dim': name,
-                'desc_dim': str(uuid.uuid4()), 'wgt_dim': random.randint(1, 100), 'pri_dim': random.randint(1, 100),
-                'aut_dim': str(uuid.uuid4())}
+                'desc_dim': str('-'), 'wgt_dim': random.randint(1, 100), 'pri_dim': random.randint(1, 100),
+                'aut_dim': str('-')}
 
         data.append(node)
 

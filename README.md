@@ -34,6 +34,18 @@ Os objetivos a atingir com o trabalho são:
 
 ###Criação da instância MYSQL
 
-Encontra-se um ficheiro docker-compose.yml disponivel na raíz do projecto. Abrir o terminal 
+Se necessitar de criar uma base se dados MySQL, encontra-se um ficheiro docker-compose.yml disponivel na raíz 
+do projecto. Abrir o terminal 
 
-1. docker-compose up
+1. $ docker-compose up -d 
+
+### Usar uma base de dados existente
+
+1. No ficheiro main.py encontra-se disponivel a informação para acesso à base de dados. Se preferir usa uma base de dados
+existente deverá actualizar a informação disponibilizada por defeito.
+![image](https://user-images.githubusercontent.com/9929973/57795732-9c91f680-773e-11e9-825e-576c9ce10969.png)
+
+2. **NOTA:** Após a actualização da informação de acesso à BD deverá assegurar que o bloco de código responsável por 
+gerar um novo dataset se encontra comentada, caso contrário a BD que indicou será restaurada com informação gerada
+pelo algoritmo.
+![image](https://user-images.githubusercontent.com/9929973/57795944-20e47980-773f-11e9-9062-63f559cb91f0.png)  

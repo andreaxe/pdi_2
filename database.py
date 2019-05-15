@@ -2,8 +2,10 @@ from sqlalchemy import Integer, ForeignKey, String, Column, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, MetaData
 
+from main import username, password, database, hostname
+
 metadata = MetaData()
-engine = create_engine("mysql+pymysql://root:@127.0.0.1/pdi_par")
+engine = create_engine("mysql+pymysql://{}:{}@{}/{}".format(username, password, hostname, database))
 Base = declarative_base()
 metadata.bind = engine
 
