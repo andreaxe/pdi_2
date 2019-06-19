@@ -15,7 +15,7 @@ def generate_dataset(number_of_nodes):
     for i in range(number_of_nodes):
         name = names.get_first_name()
         node = {'id_dim': i+1, 'itempt_dim': name, 'itemen_dim': name,
-                'desc_dim': str('-'), 'wgt_dim': random.randint(1, 100), 'pri_dim': random.randint(1, 100),
+                'desc_dim': str('-'), 'wgt_dim': random.randint(1, 20), 'pri_dim': random.randint(1, 100),
                 'aut_dim': str('-')}
 
         data.append(node)
@@ -42,18 +42,26 @@ def generate_data(number_of_nodes, con):
 
 def generate_pairs(nodes, con):
     """
+    # TP3 making sure only exists one root and tree is balanced
     generate dependencies rdim data
     :param nodes:
     :param con:
     :return:
     """
     list_of_pairs = []
-
+    root = 1
+    choices = [root]
     for i in range(nodes):
         i += 1
-        if i == 1:
+        if i == 1:  # root
             continue
-        pair = {'iddim_rdim': i, 'iddimblg_rdim': my_custom_random(nodes, i)}
+        if i == 2:  # root child
+            pair = {'iddim_rdim': root, 'iddimblg_rdim': i}
+            choices.append(i)
+        else:
+            pair = {'iddim_rdim': my_custom_random(choices, i), 'iddimblg_rdim': i}
+            choices.append(i)
+
         list_of_pairs.append(pair)
 
     pairs = pd.DataFrame(list_of_pairs)
@@ -61,7 +69,14 @@ def generate_pairs(nodes, con):
 
 
 def my_custom_random(nodes, exclude):
+    """
+    changes to reflect new choices according to tree construction
+    :param nodes:
+    :param exclude:
+    :return:
+    """
 
-    exclude=[exclude]
-    rand_number = random.randint(1, nodes)
-    return my_custom_random(nodes, exclude) if rand_number in exclude else rand_number
+    return random.choice(nodes)
+    # exclude=[exclude]
+    # rand_number = random.randint(1, nodes)
+    # return my_custom_random(nodes, exclude) if rand_number in exclude else rand_number

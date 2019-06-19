@@ -1,0 +1,90 @@
+{
+    "t": "James",
+    "children": [
+        {
+            "t": "Drew",
+            "children": [
+                {
+                    "t": "Andrea",
+                    "children": [
+                        {
+                            "t": "Terry",
+                            "value": 9
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "t": "Holly",
+            "children": [
+                {
+                    "t": "Joseph",
+                    "children": [
+                        {
+                            "t": "Patricia",
+                            "value": 20
+                        },
+                        {
+                            "t": "Christopher",
+                            "value": 18
+                        }
+                    ]
+                },
+                {
+                    "t": "Arline",
+                    "children": [
+                        {
+                            "t": "Barbara",
+                            "children": [
+                                {
+                                    "t": "Cecelia",
+                                    "value": 11
+                                }
+                            ]
+                        },
+                        {
+                            "t": "Cynthia",
+                            "value": 9
+                        }
+                    ]
+                },
+                {
+                    "t": "Christopher",
+                    "children": [
+                        {
+                            "t": "John",
+                            "value": 7
+                        }
+                    ]
+                },
+                {
+                    "t": "Cheryl",
+                    "value": 3
+                },
+                {
+                    "t": "Travis",
+                    "value": 7
+                }
+            ]
+        },
+        {
+            "t": "Eli",
+            "value": 13
+        },
+        {
+            "t": "Paulette",
+            "children": [
+                {
+                    "t": "James",
+                    "children": [
+                        {
+                            "t": "Jacob",
+                            "value": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

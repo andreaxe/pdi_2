@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     # ========================================================================
     # this function generates a random dataset and re-populates the database
-    # generate_data(number_of_nodes=18, con=con)
+    generate_data(number_of_nodes=20, con=con)
     # ========================================================================
 
     sql = 'select * from dim;'
@@ -64,6 +64,8 @@ if __name__ == '__main__':
 
     for row in result_set:
         rdim_arr.append(dict(row))
+
+    print(rdim_arr)
 
     if save_network:
 

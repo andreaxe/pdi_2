@@ -1,35 +1,40 @@
 import os
 import time
+import json
 import networkx as nx
 import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 
-# DIM
-# [{'id_dim': 1, 'itempt_dim': 'Lisa', 'itemen_dim': 'Lisa', 'desc_dim': '62946624-12c8-4a6c-af19-ba12d4f36465',
-# 'wgt_dim': 44, 'pri_dim': 89, 'aut_dim': '67b6b303-a50c-42c1-aea5-b24b25dba186'},
 
-# {'id_dim': 2, 'itempt_dim': 'Judy', 'itemen_dim': 'Judy', 'desc_dim': '80dba112-19de-43e3-a868-f6e8df5149f6',
-# 'wgt_dim': 29, 'pri_dim': 57, 'aut_dim': 'bc784724-2ca8-4033-89a3-01402e4d9aad'},
-
-# RDIM
-# [{'iddim_rdim': 2, 'iddimblg_rdim': 1},
-#  {'iddim_rdim': 9, 'iddimblg_rdim': 1},
-#  {'iddim_rdim': 7, 'iddimblg_rdim': 4},
-
-# Assume dependency is in iddim_rdim
-
-
-def search_for_label(value, dim):
+def my_interator(d, dim, id_key='name', amount_key='size'):
     """
-    not used...
-    :param value:
+    Recursive function to build the dictionary to be exported to json
+    :param d:
     :param dim:
+    :param id_key
+    :param amount_key:
     :return:
     """
+    if isinstance(d, dict):
+        for key, value in d.items():
+            if isinstance(d.get(key), list):
+                my_interator(d.get(key), dim, id_key, amount_key)
+            else:
+                if key == id_key:
+                    for k in dim:
+                        if k['id_dim'] == d[key]:
+                            d[key] = k['itempt_dim']
+                            break
+    else:
+        # children
+        # if not 'children' in d:
+        for value in d:
+            if not 'children' in value:
+                for key in dim:
+                    if key['id_dim'] == value[id_key]:
+                            value[amount_key] = key['wgt_dim']
 
-    for dict_item in dim.items():  # for name, age in dictionary.iteritems():  (for Python 2.x)
-        if dict_item['id_dim'] == value:
-            return dict_item['itempt_dim']
+            my_interator(value, dim, id_key, amount_key)
 
 
 def build_network(dim, rdim):
@@ -65,46 +70,23 @@ def build_network(dim, rdim):
     plt.title(label="")
     plt.savefig(os.path.join('plots', time.strftime('%a %H:%M:%S') + '.png'), dpi=100)
     plt.show()
+
+    # ==== Testes
+
+    # from networkx.readwrite import json_graph
+    # data = json_graph.adjacency_data(G, {'id':1, 'key': 'teste'})
+    from networkx.readwrite import json_graph
+
+    sunburst = json_graph.tree_data(G, root=1, attrs={'id': 'name', 'children': 'children'})
+    my_interator(sunburst, dim)
+
+    with open(os.path.join('html', 'data', 'sunburst.json'), "w") as outfile:
+        json.dump(sunburst, outfile, indent=4)
+
+    treemap = json_graph.tree_data(G, root=1, attrs={'id': 't', 'children': 'children'})
+    my_interator(treemap, dim, id_key='t', amount_key='value')
+
+    with open(os.path.join('html', 'data', 'treemap.json'), "w") as outfile:
+        json.dump(treemap, outfile, indent=4)
+
     plt.close()
-
-
-def example_network():
-
-    G = nx.DiGraph()
-
-    nodes = [{'node': "ROOT", "labels": "ROOT", "edge": ""},
-             {'node': "ROOT2", "labels": "ROOT2", "edge": ""},
-             {'node': "ROOT3", "labels": "ROOT3", "edge": ""},
-             {'node': "Root_Child_%1", "labels": "Root_Child_%1", "edge": "ROOT"},
-             {'node': "Root_Child_%1", "labels": "Root_Child_%1", "edge": "ROOT2"},
-             {'node': "Root_Child_%1", "labels": "Root_Child_%1", "edge": "ROOT3"},
-             {'node': "Root_Child_%2", "labels": "Root_Child_%2", "edge": "ROOT"},
-             {'node': "Root_Child_%2_1", "labels": "Root_Child_%2_1", "edge": "Root_Child_%1"},
-             {'node': "Root_Child_%2_2", "labels": "Root_Child_%2_2", "edge": "Root_Child_%2"},
-             {'node': "Root_Child_%2_3", "labels": "Root_Child_%2_3", "edge": "ROOT"}
-             ]
-
-    labels = {}
-
-    for dict_item in nodes:
-
-        if dict_item['edge'] == "":
-            G.add_node(dict_item['node'])
-        else:
-            G.add_node(dict_item['node'])
-            G.add_edge(dict_item['edge'], dict_item['node'])
-
-        labels[dict_item['node']] = dict_item['labels']
-
-    write_dot(G, 'test.dot')
-    #
-    # # same layout using matplotlib with no labels
-    plt.title('draw_networkx')
-    pos = graphviz_layout(G, prog='dot')
-    # nx.draw(G, pos, labels, arrows=True)
-    # nx.draw_networkx_labels(G, pos, arrows=True)
-    nx.draw_networkx_nodes(G, pos, node_size=1000, font_size=8)
-
-    nx.draw_networkx_edges(G, pos)
-    nx.draw_networkx_labels(G, pos, labels, font_size=8)
-    plt.show()

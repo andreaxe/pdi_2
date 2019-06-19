@@ -1,0 +1,90 @@
+{
+    "name": "James",
+    "children": [
+        {
+            "name": "Drew",
+            "children": [
+                {
+                    "name": "Andrea",
+                    "children": [
+                        {
+                            "name": "Terry",
+                            "size": 9
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Holly",
+            "children": [
+                {
+                    "name": "Joseph",
+                    "children": [
+                        {
+                            "name": "Patricia",
+                            "size": 20
+                        },
+                        {
+                            "name": "Christopher",
+                            "size": 18
+                        }
+                    ]
+                },
+                {
+                    "name": "Arline",
+                    "children": [
+                        {
+                            "name": "Barbara",
+                            "children": [
+                                {
+                                    "name": "Cecelia",
+                                    "size": 11
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Cynthia",
+                            "size": 9
+                        }
+                    ]
+                },
+                {
+                    "name": "Christopher",
+                    "children": [
+                        {
+                            "name": "John",
+                            "size": 7
+                        }
+                    ]
+                },
+                {
+                    "name": "Cheryl",
+                    "size": 3
+                },
+                {
+                    "name": "Travis",
+                    "size": 7
+                }
+            ]
+        },
+        {
+            "name": "Eli",
+            "size": 13
+        },
+        {
+            "name": "Paulette",
+            "children": [
+                {
+                    "name": "James",
+                    "children": [
+                        {
+                            "name": "Jacob",
+                            "size": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

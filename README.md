@@ -1,5 +1,6 @@
-# Processamento de pares de identificadores (PDI 2)
+# Processamento de pares de identificadores (PDI 2 e 3)
 
+### PDI 2
 Pretende-se criar um algorítmo para classificar hierarquicamente a informação a partir de registos compostos por pares 
 de identificadores.Para este trabalho, deverá considerar a informação disponível em duas tabelas de uma dada base de 
 dados: 
@@ -24,11 +25,22 @@ Os objetivos a atingir com o trabalho são:
 2.ordenar e representar a informação tendo como referência o conceito de hierarquia, taxonomia, ou organigrama; 
 3. sistematizar o processo por forma a generalizar para casos similares.
 
+### PDI 3
+
+Pretende-se implementar uma ou mais soluções que permitam visualizar a informação gerada pelos pares de identificadores abordados no 2º momento de avaliação.
+
+Para este trabalho, deverá considerar o algoritmo, criado para processamento dos pares de identificadores, durante o trabalho do 2º momento de avaliação, e(ou) a utilização de uma ou mais frameworks para visualização de a informação
+
+A apresentação dos resultados deverá ser visualizável de acordo com três padrões: árvore (nós, laços); tabular; explosão solar (sunburst).
+
 ### Exemplo:
 
 - Na pasta *plots* encontram-se imagens das árvores de dependências geradas. 
 
 ![image](https://user-images.githubusercontent.com/9929973/57588637-eb594980-750e-11e9-88f5-d4e1f88e92eb.png)
+
+- Sunburst
+
 
 # Deploy do projecto
 
@@ -67,3 +79,4 @@ A instalação das dependências poderá ser efectuada a partir da pasta do proj
 A alternativa poderá ser usar o miniconda para criação de um ambiente virtual e instalação das dependências e da biblioteca em falha.
 
 Em caso de dúvida contactar: andregarxia@gmail.com
+

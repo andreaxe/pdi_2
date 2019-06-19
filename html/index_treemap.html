@@ -1,0 +1,104 @@
+<html>
+<head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js"></script>
+
+    <style>
+        body {
+            font-family: Sans-serif;
+            font-size: 11px;
+        }
+        .slice {
+            cursor: pointer;
+        }
+
+        .slice .main-arc {
+            stroke: #fff;
+            stroke-width: 1px;
+        }
+
+        .slice .hidden-arc {
+            fill: none;
+        }
+
+        .slice text {
+            pointer-events: none;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+<h1>PDI - 3º Momento </h1>
+<h2>TREEMAP</h2>
+<div id='partition'></div>
+<script type="text/javascript">
+
+    function partition() {
+
+        var s = JSON.stringify('data/treemap.json');
+        console.log(s);
+        var t = s.replace(/"name"/g, '"t"');
+        var newJson = JSON.parse(t);
+
+        var width = 1600;
+        var height = 1000;
+
+        var div = d3.select('#partition').style('width', width)
+            .style('height', height).style('position', 'relative');
+
+        var partition = d3.layout.partition().size([width, height]);
+
+        d3.json('data/treemap.json', function(error, data){
+            var nodes = partition.nodes(data);
+            console.log(nodes);
+            div.selectAll('.node').data(nodes).enter()
+                .append('div')
+                .style('position', 'absolute')
+                .style('left', function(d){return d.x})
+                .style('top', function(d){return d.y })
+                .style('width', function(d) { return d.dx } )
+
+                .style('height', function(d) { return d.dy } )
+                .style('background-color', function(d) {
+                    return $c.rgb2hex(200, 200, 200 - 50 * d.depth)
+                })
+                .style('border', '1px solid black')
+                .text(function(d) { return d.t; });
+        });
+    }
+
+</script>
+<svg></svg>
+<script type="text/javascript">
+
+    function pack() {
+        var width = 1000;
+        var height = 1000;
+
+        var svg = d3.select('svg')
+            .attr('width', width).attr('height', height);
+        var pack = d3.layout.pack().size([width, height]);
+
+        d3.json('data.json', function(error, data){
+            var nodes = pack.nodes(data);
+            svg.selectAll('circle').data(nodes).enter().append('circle')
+                .attr('cx', function(d) { return d.x })
+                .attr('cy', function(d) { return d.y })
+                .attr('r', function(d) { return d.r } )
+                .attr('stroke', 'black')
+                .attr('stroke-width', '1')
+                .attr('fill', function(d) {
+                    return $c.rgb2hex(200, 200, 200 - 50 * d.depth)
+                });
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    // treemap();
+    partition();
+    // pack();
+</script>
+</body>
+</html>
